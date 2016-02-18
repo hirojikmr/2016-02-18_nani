@@ -40,7 +40,7 @@
 
   <div class="field">
     <%= f.label :start %><br>
-    <%= f.datetime_select :start %>
+    <%= f.datetime_select :start,:include_seconds => true, :order => [:month, :day, :year, :hour, :minute, :second]  %>
   </div>
   <div class="field">
     <%= f.label :end %><br>

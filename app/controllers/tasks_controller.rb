@@ -36,7 +36,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.end = Time.now
-    @task.dur = @task.end-@task.start
+    @task.dur = Time.at(@task.end-@task.start)
 
     #respond_to do |format|
       if @task.save

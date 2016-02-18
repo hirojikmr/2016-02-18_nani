@@ -2,7 +2,7 @@
 
 <h1>Listing Tasks</h1>
 
-<table>
+<table class="data">
   <thead>
     <tr>
       <th>Start</th>
@@ -16,9 +16,9 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.start.strftime "%m/%m %H:%M" %></td>
-        <td><%= task.end.strftime " %H:%M"  %></td>
-        <td><%= task.dur.strftime " %H:%M:%S"  %></td>
+        <td><%= task.start.strftime "%m/%m %H:%M:%S" %></td>
+        <td><%= task.end.strftime " %H:%M:%S"  %></td>
+        <td><%= task.dur.utc.strftime " %H:%M:%S" unless task.dur.nil? %></td>
         <td><%= task.body %></td>
         <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
@@ -31,3 +31,4 @@
 <br>
 
 <%= link_to 'New Task', new_task_path %>
+<%= link_to 'START', :action=>"start"%>
