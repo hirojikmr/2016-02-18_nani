@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Tasks</h1>
+<%= @tasks[0].start.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@tasks[0].start.wday]})")%>
 
 <table class="data">
   <thead>
@@ -15,14 +16,14 @@
 
   <tbody>
     <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.start.strftime "%m/%m %H:%M:%S" %></td>
-        <td><%= task.end.strftime " %H:%M:%S"  %></td>
-        <td><%= task.dur.utc.strftime " %H:%M:%S" unless task.dur.nil? %></td>
-        <td><%= task.body %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <tr class="<%= task.start.hour.even? ? "even_hour":"odd_hour"%>">
+        <td><%= task.start.strftime "%H:%M" %></td>
+        <td><%= task.end.strftime " %H:%M" %></td>
+        <td><%= task.dur.utc.strftime "%M:%S" unless task.dur.nil? %></td>
+        <td><pre><%= task.body %></pre></td>
+        <td><%= link_to  task do %><i class="glyphicon glyphicon-eye-open"></i><% end %></td>
+        <td><%= link_to  edit_task_path(task) do %><i class="glyphicon glyphicon-pencil"></i><% end %></td>
+        <td><%= link_to  task, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="glyphicon glyphicon-trash"><% end %></i></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,5 +31,4 @@
 
 <br>
 
-<%= link_to 'New Task', new_task_path %>
 <%= link_to 'START', :action=>"start"%>

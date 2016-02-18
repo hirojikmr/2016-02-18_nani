@@ -1,29 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Start:</strong>
-  <%= @task.start %>
-</p>
-
 <p> タスクスタートしました</p>
-
-<p>
-  <strong>End:</strong>
-  <%= @task.end %>
-</p>
-
-<p>
-  <strong>Dur:</strong>
-  <%= @task.dur %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @task.body %>
-</p>
-
-
-
 
 <%= form_for(@task) do |f| %>
   <% if @task.errors.any? %>
@@ -43,18 +20,11 @@
     <%= f.datetime_select :start,:include_seconds => true, :order => [:month, :day, :year, :hour, :minute, :second]  %>
   </div>
   <div class="field">
-    <%= f.label :end %><br>
-    <%= f.datetime_select :end %>
-  </div>
-  <div class="field">
-    <%= f.label :dur %><br>
-    <%= f.time_select :dur %>
-  </div>
-  <div class="field">
     <%= f.label :body %><br>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, size:"70x20"  %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "END"  %>|<%= link_to "キャンセル", tasks_path  %>
   </div>
 <% end %>
+    

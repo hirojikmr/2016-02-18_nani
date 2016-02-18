@@ -33,9 +33,14 @@ border-bottom: 1px solid #ccc;
 }
 .data td{
 padding: 4px;
-background-color: #fafafa;
 border-right: 1px solid #ccc;
 border-bottom: 1px solid #ccc;
 }
 
+.even_hour{
+  background-color:#ffe6e6;
+}
 
+.odd_hour{
+  background-color: #ffcccc;
+}
