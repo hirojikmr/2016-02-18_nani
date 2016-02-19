@@ -44,3 +44,16 @@ border-bottom: 1px solid #ccc;
 .odd_hour{
   background-color: #ffcccc;
 }
+
+.cal{
+  text-align: right;
+}
+.cal td{
+  text-align: right;
+  width:25px;
+}
+.cal_title {
+  text-align: center;
+  width:195px;
+  font-size:12pt;
+}

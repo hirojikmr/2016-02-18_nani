@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218094456) do
+ActiveRecord::Schema.define(version: 20160218224533) do
+
+  create_table "memos", force: :cascade do |t|
+    t.datetime "date"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.datetime "start"
