@@ -1,11 +1,11 @@
 class MemosController < ApplicationController
-  before_action :set_memo, only: [:show, :edit, :update, :destroy]
+  before_action :set_memo, only: [:show,  :update, :destroy]
 
   # GET /memos
   # GET /memos.json
   def index
     @year = Date.today.year
-    @month =Date.today.month+3
+    @month =Date.today.month
     @weeks = cal(@year,@month)
     @memos = Memo.all
   end
@@ -13,7 +13,14 @@ class MemosController < ApplicationController
   # GET /memos/1
   # GET /memos/1.json
   def show
+    day=params[:day]
+    month=params[:month]
+    year = params[:year]
+    memos = Memo.where :date=> sprintf("%04d-%02d-%02d",year,month,day)
+    @memo = memos[0]
+    
   end
+
 
   # GET /memos/new
   def new
@@ -22,6 +29,13 @@ class MemosController < ApplicationController
 
   # GET /memos/1/edit
   def edit
+    day=params[:day]
+    month=params[:month]
+    year = params[:year]
+    memos = Memo.where :date=> sprintf("%04d-%02d-%02d",year,month,day)
+    @memo = memos[0]
+
+
   end
 
   # POST /memos

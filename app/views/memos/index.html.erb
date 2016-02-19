@@ -7,7 +7,14 @@
 <table class="cal">
   <tr><td><%= %w(月 火 水 木 金 土 日).join('</td><td>').html_safe%></td></tr>
   <% @weeks.each do |week| %>
-    <tr><td><%= week.join('</td><td>').html_safe%></td></tr>
+    <tr>
+      <% week.each do |day| %>
+      <td>
+        <%= link_to day, :action=>"edit", :params=>{year:@year,month:@month,day:day, id:0} unless day.nil?%>
+      </td>
+      <% end %>
+    </tr>
+
   <% end %>
 </table>
 </br>

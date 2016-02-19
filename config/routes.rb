@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  get  ':controller(/:action(/:id))'
   resources :memos
   get 'tasks/start' => 'tasks#start'
   resources :tasks
