@@ -14,7 +14,10 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+
+
+    @days_tasks = get_days_tasks
+
   end
 
   # GET /tasks/1
@@ -41,6 +44,10 @@ class TasksController < ApplicationController
     #respond_to do |format|
       if @task.save
         @tasks = Task.all
+
+        @days_tasks = get_days_tasks
+
+
         render "index"
         #format.html { redirect_to @task, notice: 'Task was successfully created.' }
         #format.json { render :show, status: :created, location: @task }
@@ -85,4 +92,24 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(:start, :end, :dur, :body)
     end
+
+
+    def get_days_tasks
+
+      all_tasks = Task.all
+      days_tasks=[]
+
+      tasks=[]
+      cur_day = all_tasks[0].start.day
+      all_tasks.each do |t|
+        if cur_day != t.start.day
+          days_tasks << tasks
+          tasks = []
+          cur_day = t.start.day
+        end
+        tasks << t
+      end
+      days_tasks << tasks
+
+  end
 end

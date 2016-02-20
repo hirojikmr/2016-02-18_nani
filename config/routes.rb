@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
+  get 'tasks/start' => 'tasks#start'
+  resources :memos
+  resources :tasks
 
   get  ':controller(/:action(/:id))'
-  resources :memos
-  get 'tasks/start' => 'tasks#start'
-  resources :tasks
   #get ':controller(/:action(/:id(.:format)))'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

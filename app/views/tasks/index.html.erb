@@ -1,34 +1,45 @@
+<script>
+  $(window).load(function() {
+  $("html, body").animate({ scrollTop: $(document).height() }, 200);
+});
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Tasks</h1>
-<%= @tasks[0].start.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@tasks[0].start.wday]})")%>
 
-<table class="data">
-  <thead>
-    <tr>
-      <th>Start</th>
-      <th>End</th>
-      <th>Dur</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr class="<%= task.start.hour.even? ? "even_hour":"odd_hour"%>">
-        <td><%= task.start.strftime "%H:%M" %></td>
-        <td><%= task.end.strftime " %H:%M" %></td>
-        <td><%= task.dur.utc.strftime "%H:%M:%S" unless task.dur.nil? %></td>
-        <td><pre><%= task.body %></pre></td>
-        <td><%= link_to  task do %><i class="glyphicon glyphicon-eye-open"></i><% end %></td>
-        <td><%= link_to  edit_task_path(task) do %><i class="glyphicon glyphicon-pencil"></i><% end %></td>
-        <td><%= link_to  task, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="glyphicon glyphicon-trash"><% end %></i></td>
+<% @days_tasks.each do |tasks| %>
+  <%= tasks[0].start.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[tasks[0].start.wday]})")%>
+
+  <table class="task_data">
+    <thead>
+      <tr>
+        <th class="start">Start</th>
+        <th class="end">End</th>
+        <th class="dur">Dur</th>
+        <th class="body">Body</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% tasks.each do |task| %>
+        <tr class="<%= task.start.hour.even? ? "even_hour":"odd_hour"%>">
+          <td><%= task.start.strftime "%H:%M" %></td>
+          <td><%= task.end.strftime " %H:%M" %></td>
+          <td><%= task.dur.utc.strftime "%H:%M:%S" unless task.dur.nil? %></td>
+          <td><pre><%= task.body %></pre></td>
+          <td><%= link_to  task do %><i class="glyphicon glyphicon-eye-open"></i><% end %></td>
+          <td><%= link_to  edit_task_path(task) do %><i class="glyphicon glyphicon-pencil"></i><% end %></td>
+          <td><%= link_to  task, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="glyphicon glyphicon-trash"><% end %></i></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </br>
+<% end %>
 <br>
 
 <%= link_to 'START', :action=>"start"%>
+

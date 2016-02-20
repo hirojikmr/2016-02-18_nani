@@ -1,0 +1,18 @@
+<div class="cal_title"><%=year %>年<%=month%>月</div>
+
+<table class="cal">
+  <tr><td><%= %w(月 火 水 木 金 土 日).join('</td><td>').html_safe%></td></tr>
+  <% weeks.each do |week| %>
+    <tr>
+      <% week.each do |memo| %>
+        <td class="<%=memo.id!=0?"yotei_ari":"" unless memo.nil? %>">
+          <% if !memo.nil?  %>
+            <%= memo.id!=0? (link_to memo.date.day, edit_memo_path(memo)):
+                      (link_to memo.date.day, :action=>:new, :params=>{:date=>memo.date}) %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+  <% end %>
+</table>

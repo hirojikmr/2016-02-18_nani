@@ -2,39 +2,27 @@
 
 <h1>Listing Memos...</h1>
 
-<div class="cal_title"><%= @year%>年<%=@month %>月</div>
-
-<table class="cal">
-  <tr><td><%= %w(月 火 水 木 金 土 日).join('</td><td>').html_safe%></td></tr>
-  <% @weeks.each do |week| %>
-    <tr>
-      <% week.each do |day| %>
-      <td>
-        <%= link_to day, :action=>"edit", :params=>{year:@year,month:@month,day:day, id:0} unless day.nil?%>
-      </td>
-      <% end %>
-    </tr>
-
-  <% end %>
+<table>
+<tr>
+<td><%= render :partial =>"cal", :locals => { weeks: @prev_month_weeks, year:@year, month:@month-1} %></td>
+<td><%= render :partial =>"cal", :locals => { weeks: @curr_month_weeks, year:@year, month:@month} %></td>
+<td><%= render :partial =>"cal", :locals => { weeks: @next_month_weeks, year:@year, month:@month+1} %></td>
 </table>
+
 </br>
 <table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
   <tbody>
     <% @memos.each do |memo| %>
       <tr>
-        <td><%= memo.date %></td>
-        <td><%= memo.body %></td>
-        <td><%= link_to 'Show', memo %></td>
-        <td><%= link_to 'Edit', edit_memo_path(memo) %></td>
-        <td><%= link_to 'Destroy', memo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= memo.date.strftime("%m/%d")%><br><pre><%= memo.body %></pre></td>
+
+     </tr>
+     <tr>
+        <td style="text-align:right;">
+        <%= link_to  edit_memo_path(memo) do %><i class="glyphicon glyphicon-pencil"></i><% end %>
+        <%= link_to  memo, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="glyphicon glyphicon-trash"></i><% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Memo', new_memo_path %>
+<%#= link_to 'New Memo', new_memo_path %>

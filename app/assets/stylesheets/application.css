@@ -57,3 +57,45 @@ border-bottom: 1px solid #ccc;
   width:195px;
   font-size:12pt;
 }
+
+.task_data{
+width:1000px;
+border-collapse: separate;
+border-spacing: 0px;
+border-top: 1px solid #ccc;
+border-left: 1px solid #ccc;
+}
+.task_data th{
+padding: 4px;
+text-align: left;
+vertical-align: top;
+color: #444;
+background-color: #ccc;
+border-top: 1px solid #fff;
+border-left: 1px solid #fff;
+border-right: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+}
+.task_data td{
+padding: 4px;
+border-right: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+}
+
+.task_data .start{
+  width: 50px;
+}
+.task_data .end{
+  width: 50px;
+}
+.task_data .dur{
+  width: 50px;
+}
+.task_data .body{
+  width: 700px;
+}
+
+.yotei_ari a:link,
+.yotei_ari a:visited{
+  background-color:gray;
+}
