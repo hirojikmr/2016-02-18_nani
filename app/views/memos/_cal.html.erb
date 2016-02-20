@@ -5,7 +5,17 @@
   <% weeks.each do |week| %>
     <tr>
       <% week.each do |memo| %>
-        <td class="<%=memo.id!=0?"yotei_ari":"" unless memo.nil? %>">
+        <% 
+          class_str = "" 
+          if  !memo.nil?
+            class_str = memo.id!=0?"yotei_ari ":"" 
+            class_str = memo.date == Date.today ? "today " :class_str
+            class_str += HolidayJp.holiday?( memo.date) || memo.date.wday==0 ? "yasumi " :"" 
+            class_str += memo.date.wday==6 ? "sat " :"" 
+          end
+  
+        %>
+        <td class="<%=class_str%>">
           <% if !memo.nil?  %>
             <%= memo.id!=0? (link_to memo.date.day, edit_memo_path(memo)):
                       (link_to memo.date.day, :action=>:new, :params=>{:date=>memo.date}) %>

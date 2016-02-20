@@ -97,5 +97,19 @@ border-bottom: 1px solid #ccc;
 
 .yotei_ari a:link,
 .yotei_ari a:visited{
-  background-color:gray;
+  background-color:hsl(240, 100%, 80%);
+}
+.yasumi a:link,
+.yasumi a:visited{
+  color:hsl(0, 100%, 65%);
+}
+.sat a:link,
+.sat a:visited{
+
+  color:hsl(240, 85%, 55%);
+}
+
+.today a:link,
+.today a:visited{
+  background-color: hsl(60, 100%, 50%);
 }
