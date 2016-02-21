@@ -5,13 +5,26 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+#  adapter: sqlite3
+
+#  pool: 5
+#  timeout: 5000
+
+  adapter: mysql2
+  encoding: utf8
   pool: 5
-  timeout: 5000
+  username: nani
+  password: 0855
+  socket: 3306
+  host: mysql.momox.net
+
+#development:
+#  <<: *default
+#  database: db/development.sqlite3
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: nani_db
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

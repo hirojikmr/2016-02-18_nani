@@ -15,18 +15,18 @@ ActiveRecord::Schema.define(version: 20160219013701) do
 
   create_table "memos", force: :cascade do |t|
     t.date     "date"
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "body",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "tasks", force: :cascade do |t|
     t.datetime "start"
     t.datetime "end"
     t.datetime "dur"
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "body",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
 end
