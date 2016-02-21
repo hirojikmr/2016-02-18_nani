@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219013701) do
+ActiveRecord::Schema.define(version: 20160221064812) do
+
+  create_table "capsels", force: :cascade do |t|
+    t.date     "start"
+    t.date     "end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "memos", force: :cascade do |t|
     t.date     "date"

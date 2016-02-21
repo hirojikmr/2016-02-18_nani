@@ -1,0 +1,25 @@
+<%= form_for(@capsel) do |f| %>
+  <% if @capsel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@capsel.errors.count, "error") %> prohibited this capsel from being saved:</h2>
+
+      <ul>
+      <% @capsel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :start %><br>
+    <%= f.date_select :start %>
+  </div>
+  <div class="field">
+    <%= f.label :end %><br>
+    <%= f.date_select :end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

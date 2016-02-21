@@ -14,8 +14,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-
-
+    
     @days_tasks = get_days_tasks
 
   end
@@ -61,6 +60,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
+
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
@@ -70,6 +70,7 @@ class TasksController < ApplicationController
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # DELETE /tasks/1

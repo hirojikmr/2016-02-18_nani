@@ -113,3 +113,15 @@ border-bottom: 1px solid #ccc;
 .today a:visited{
   background-color: hsl(60, 100%, 50%);
 }
+
+
+.capsel_start_day a:link,
+.capsel_start_day a:visited{
+  background-color: orange;
+}
+
+.capsel_stay_day a:link,
+.capsel_stay_day a:visited{
+  color: green;
+}
+

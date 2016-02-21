@@ -1,14 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Memos...<%= @yotei.count %></h1>
+<h1>Listing Memos...<%= @capsel_start_dates.count %></h1>
 
 <table>
-<tr>
-<td><%= render :partial =>"cal", :locals => { weeks: @prev_month_weeks, year:@year, month:@month-1} %></td>
-<td><%= render :partial =>"cal", :locals => { weeks: @curr_month_weeks, year:@year, month:@month} %></td>
-<td><%= render :partial =>"cal", :locals => { weeks: @next_month_weeks, year:@year, month:@month+1} %></td>
-</table>
+  <tr>
+  <% this_month = @month_start %>
+  <% @month_weeks_arr.each do |weeks| %>
 
+      <tr>
+        <td><%= render :partial =>"cal", :locals => { weeks:weeks, year:@year, month:this_month, 
+                                                       capsel_start_dates: @capsel_start_dates, 
+                                                       capsel_stay_dates:@capsel_stay_dates } %>
+        </td>
+      </tr>
+      <% this_month+=1 %>
+    
+  <% end %>
+
+</table>
 </br>
 <table>
 

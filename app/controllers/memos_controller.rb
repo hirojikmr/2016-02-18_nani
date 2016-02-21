@@ -7,29 +7,31 @@ class MemosController < ApplicationController
   # GET /memos
   # GET /memos.json
   def index
-    
     #
-    #  先月、今月、来月の予定配列の生成する
     #
-    now= Time.now.last_month
-    @yotei = Memo.where(:date => now.beginning_of_month..now.end_of_month)
-    now = Time.now
-    @yotei += Memo.where(:date => now.beginning_of_month..now.end_of_month)
-    now = Time.now.next_month
-    @yotei += Memo.where(:date => now.beginning_of_month..now.end_of_month)
-
+    # 　複数のカレンダーを表示できるようにする
+    #
     @year = Date.today.year
-    @month =Date.today.month
+    @yotei = Memo.all
+    @month_weeks_arr = []
+    @month_start = 1
+    @month_end =  12
+    (@month_start..@month_end).each do |m|
+      @month_weeks_arr << cal(2016,m)
+    end
 
-    #
-    #  表示用配列を生成する　（予定がない部分は、id=0のMemoオブジェクト）
-    #
-    @prev_month_weeks = cal(@year,@month-1)
-    @curr_month_weeks = cal(@year,@month)
-    @next_month_weeks = cal(@year,@month+1)
+    @capsel_start_dates = Capsel.all.map{ |c| c.start }
+    
+    @capsel_stay_dates =[]
+    Capsel.all.each do  |c|
+      (c.start..c.end-1).each do  |d|
+        print d.to_s, "*********************************\n"
+        @capsel_stay_dates << d
+      end
+    end
 
     # すべての予定を取得する (一覧のため）
-    @memos = Memo.all
+    @memos = Memo.order("updated_at DESC")
   end
 
   # GET /memos/1
@@ -85,7 +87,8 @@ class MemosController < ApplicationController
   # PATCH/PUT /memos/1.json
   def update
       if @memo.update(memo_params)
-        redirect_to  :action=>"index"
+         #redirect_to  :action=>"index"
+         render :edit
 #        format.html { redirect_to @memo, notice: 'Memo was successfully updated.' }
 #        format.json { render :show, status: :ok, location: @memo }
       else

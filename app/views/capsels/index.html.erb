@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Capsels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start</th>
+      <th>End</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @capsels.each do |capsel| %>
+      <tr>
+        <td><%= capsel.start %></td>
+        <td><%= capsel.end %></td>
+        <td><%= link_to 'Show', capsel %></td>
+        <td><%= link_to 'Edit', edit_capsel_path(capsel) %></td>
+        <td><%= link_to 'Destroy', capsel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Capsel', new_capsel_path %>

@@ -1,0 +1,2 @@
+module CapselsHelper
+end

@@ -12,6 +12,8 @@
             class_str = memo.date == Date.today ? "today " :class_str
             class_str += HolidayJp.holiday?( memo.date) || memo.date.wday==0 ? "yasumi " :"" 
             class_str += memo.date.wday==6 ? "sat " :"" 
+            class_str += capsel_start_dates.include?(memo.date) ? "capsel_start_day ": ""
+            class_str += capsel_stay_dates.include?(memo.date) ? "capsel_stay_day ": ""
           end
   
         %>

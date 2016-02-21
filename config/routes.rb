@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :capsels
   get 'tasks/start' => 'tasks#start'
   resources :memos
   resources :tasks
