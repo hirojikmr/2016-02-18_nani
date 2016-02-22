@@ -1,6 +1,6 @@
-<div class="cal_title"><%=year %>年<%=month%>月</div>
+<div class="cal_title"  style=""><%=year %>年<%=month%>月</div>
 
-<table class="cal">
+<table class="cal" style="margin-left:auto; margin-right:auto">
   <tr><td><%= %w(月 火 水 木 金 土 日).join('</td><td>').html_safe%></td></tr>
   <% weeks.each do |week| %>
     <tr>

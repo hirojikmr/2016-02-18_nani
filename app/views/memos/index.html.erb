@@ -7,7 +7,7 @@
   <% this_month = @month_start %>
   <% @month_weeks_arr.each do |weeks| %>
 
-      <div style="float:left; width: 200px; height: 150px">
+      <div class="<%= (this_month==Time.now.month)?"this_month":"" %>" style=" float:left; width: 200px; height: 150px">
         <%= render :partial =>"cal", :locals => { weeks:weeks, year:@year, month:this_month, 
                                                        capsel_start_dates: @capsel_start_dates, 
                                                        capsel_stay_dates:@capsel_stay_dates } %>
