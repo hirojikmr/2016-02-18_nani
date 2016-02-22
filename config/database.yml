@@ -13,10 +13,10 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
-  password: pass
+  username: traff
+  password: 0855
   socket: /run/mysqld/mysqld.sock
-  host: localhost
+  host: mysql.momox.net
 
 #development:
 #  <<: *default
@@ -24,7 +24,7 @@ default: &default
 
 development:
   <<: *default
-  database: test_db
+  database: traff_db
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
