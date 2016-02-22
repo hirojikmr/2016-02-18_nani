@@ -26,6 +26,7 @@ class CapselsController < ApplicationController
   # POST /capsels
   # POST /capsels.json
   def create
+    Capsel.delete_all
 
     data = params[:data]
     arr = []
@@ -39,22 +40,7 @@ class CapselsController < ApplicationController
       Capsel.create(h)
     end
 
-    render :text=> Capsel.count
-    return
-
-
-
-    @capsel = Capsel.new(capsel_params)
-
-    respond_to do |format|
-      if @capsel.save
-        format.html { redirect_to @capsel, notice: 'Capsel was successfully created.' }
-        format.json { render :show, status: :created, location: @capsel }
-      else
-        format.html { render :new }
-        format.json { render json: @capsel.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to memos_path
   end
 
   # PATCH/PUT /capsels/1
