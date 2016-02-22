@@ -27,16 +27,6 @@ ActiveRecord::Schema.define(version: 20160221064812) do
     t.datetime "updated_at",               null: false
   end
 
-  create_table "speeds", force: :cascade do |t|
-    t.date     "date"
-    t.time     "time"
-    t.float    "down",       limit: 24
-    t.float    "up",         limit: 24
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "rem",        limit: 255
-  end
-
   create_table "tasks", force: :cascade do |t|
     t.datetime "start"
     t.datetime "end"
@@ -44,14 +34,6 @@ ActiveRecord::Schema.define(version: 20160221064812) do
     t.text     "body",       limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-  end
-
-  create_table "traffics", force: :cascade do |t|
-    t.string   "date",       limit: 255
-    t.float    "r",          limit: 24
-    t.float    "s",          limit: 24
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
   end
 
 end
