@@ -13,10 +13,10 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: nani
-  password: 0855
-  socket: 3306
-  host: mysql.momox.net
+  username: root
+  password: pass
+  socket: /run/mysqld/mysqld.sock
+  host: localhost
 
 #development:
 #  <<: *default
@@ -24,7 +24,7 @@ default: &default
 
 development:
   <<: *default
-  database: nani_db
+  database: test_db
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

@@ -1,24 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Memos...<%= @capsel_start_dates.count %></h1>
 
-<table>
-  <tr>
+<!--<h1>Listing Memos...</h1>-->
+<div style="width: 600px">
+
   <% this_month = @month_start %>
   <% @month_weeks_arr.each do |weeks| %>
 
-      <tr>
-        <td><%= render :partial =>"cal", :locals => { weeks:weeks, year:@year, month:this_month, 
+      <div style="float:left; width: 200px; height: 150px">
+        <%= render :partial =>"cal", :locals => { weeks:weeks, year:@year, month:this_month, 
                                                        capsel_start_dates: @capsel_start_dates, 
                                                        capsel_stay_dates:@capsel_stay_dates } %>
-        </td>
-      </tr>
+        
+      </div>
       <% this_month+=1 %>
     
   <% end %>
 
-</table>
 </br>
+<div style="clear: both;   ">
+<!-- Memo List -->
+<hr>
 <table>
 
   <tbody>
@@ -36,7 +38,8 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
 
+</div>
 <%#= link_to 'New Memo', new_memo_path %>

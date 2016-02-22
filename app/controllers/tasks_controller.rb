@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_title
 
 
   def start
@@ -96,6 +96,10 @@ class TasksController < ApplicationController
 
 
     def get_days_tasks
+      #no tasks? (THIS ONLY HAPPENS WHEN DB.TABLE IS EMPTY..)
+      if Task.all[0].nil?
+        return []
+      end
 
       all_tasks = Task.all
       days_tasks=[]
@@ -112,5 +116,9 @@ class TasksController < ApplicationController
       end
       days_tasks << tasks
 
+  end
+
+  def set_title
+    @title = "Tasks"
   end
 end

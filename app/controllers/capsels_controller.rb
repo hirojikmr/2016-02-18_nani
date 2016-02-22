@@ -1,6 +1,8 @@
 class CapselsController < ApplicationController
   before_action :set_capsel, only: [:show, :edit, :update, :destroy]
+  before_action :set_title
 
+  @title = "Capsels"
   # GET /capsels
   # GET /capsels.json
   def index
@@ -88,5 +90,9 @@ class CapselsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def capsel_params
       params.require(:capsel).permit(:start, :end)
+    end
+
+    def set_title
+      @title="Capsels"
     end
 end

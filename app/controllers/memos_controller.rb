@@ -1,8 +1,11 @@
 class MemosController < ApplicationController
   before_action :set_memo, only: [:show,:edit,  :update, :destroy]
+  before_action :set_title
 
   #登録されている予定の配列
   @yotei
+
+  @title="Memos"
 
   # GET /memos
   # GET /memos.json
@@ -49,6 +52,8 @@ class MemosController < ApplicationController
   # GET /memos/new
   def new
     @memo = Memo.new(:date=>params[:date])
+    #@memo = Memo.new(memo_params)
+
   end
 
   # GET /memos/1/edit
@@ -74,7 +79,8 @@ class MemosController < ApplicationController
     @memo = Memo.new(memo_params)
 
       if @memo.save
-        redirect_to  :action=>"index"
+        #redirect_to  :action=>"index"
+        render :edit
 
 #        format.html { redirect_to @memo, notice: 'Memo was successfully created.' }
 #        format.json { render :show, status: :created, location: @memo }
@@ -191,4 +197,7 @@ class MemosController < ApplicationController
       return nil
     end
 
+  def set_title
+    @title = "Memos"
+  end
 end
