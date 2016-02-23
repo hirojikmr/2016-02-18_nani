@@ -3,9 +3,11 @@ class TasksController < ApplicationController
   before_action :set_title
 
 
+
   def start
     @task = Task.new
-    @task.start = Time.now
+    last_task = Task.last
+    @task.start = last_task.end
   end
 
   def end

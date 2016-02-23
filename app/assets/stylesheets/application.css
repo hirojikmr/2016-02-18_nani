@@ -129,3 +129,8 @@ border-bottom: 1px solid #ccc;
     background-color: pink;
 
 }
+  
+
+.task_start {
+  color: red;
+}

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :capsels
   get 'tasks/start' => 'tasks#start'
+  post 'memos/hoge'  => 'memos#hoge'
   resources :memos
   resources :tasks
 

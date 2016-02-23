@@ -2,10 +2,25 @@ class MemosController < ApplicationController
   before_action :set_memo, only: [:show,:edit,  :update, :destroy]
   before_action :set_title
 
+
+
   #登録されている予定の配列
   @yotei
 
   @title="Memos"
+
+
+  def hoge
+    memo=Memo.find(params[:id])
+    memo.assign_attributes(:body=>params[:body])
+
+    if memo.save
+      render :text=>"OK"
+    else
+      render :text =>"NG"
+    end
+  end
+
 
   # GET /memos
   # GET /memos.json
@@ -28,7 +43,6 @@ class MemosController < ApplicationController
     @capsel_stay_dates =[]
     Capsel.all.each do  |c|
       (c.start..c.end-1).each do  |d|
-        print d.to_s, "*********************************\n"
         @capsel_stay_dates << d
       end
     end
@@ -53,7 +67,7 @@ class MemosController < ApplicationController
   def new
     @memo = Memo.new(:date=>params[:date])
     #@memo = Memo.new(memo_params)
-
+    @memo.save
   end
 
   # GET /memos/1/edit
@@ -122,7 +136,7 @@ class MemosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def memo_params
-      params.require(:memo).permit(:date, :body)
+      params.require(:memo).permit(:id, :date, :body)
     end
 
     # Returns array of weeks of the year/month.

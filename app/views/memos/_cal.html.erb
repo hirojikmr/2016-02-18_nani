@@ -20,7 +20,7 @@
         <td class="<%=class_str%>">
           <% if !memo.nil?  %>
             <%= memo.id!=0? (link_to memo.date.day, edit_memo_path(memo)):
-                      (link_to memo.date.day, :action=>:new, :params=>{:date=>memo.date}) %>
+                      (link_to memo.date.day, :action=>"new", :params=>{:date=>memo.date}) %>
           <% end %>
         </td>
       <% end %>
