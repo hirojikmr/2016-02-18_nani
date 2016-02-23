@@ -13,6 +13,7 @@ class MemosController < ApplicationController
   def hoge
     memo=Memo.find(params[:id])
     memo.assign_attributes(:body=>params[:body])
+    memo.body = nil if memo.body==""
 
     if memo.save
       render :text=>"OK"

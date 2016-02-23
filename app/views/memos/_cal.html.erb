@@ -8,7 +8,7 @@
         <% 
           class_str = "" 
           if  !memo.nil?
-            class_str = memo.id!=0?"yotei_ari ":"" 
+            class_str = !memo.body.nil? ? "yotei_ari ":"" 
             class_str = memo.date == Date.today ? "today " :class_str
             class_str += HolidayJp.holiday?( memo.date) || memo.date.wday==0 ? "yasumi " :"" 
             class_str += memo.date.wday==6 ? "sat " :"" 
