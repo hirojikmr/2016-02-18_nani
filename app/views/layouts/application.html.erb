@@ -9,14 +9,24 @@
 </head>
 <body>
 <div style="width: 600px; height:50px; text-align: center;">
-	<h2>
+	<span style="font-size: 28px">
 	  <%= link_to "Memos", memos_path %>
 	  <%= link_to "Tasks", tasks_path, :onclick => 'scroll_down();' %>
 	  <%= link_to "Capsels",  capsels_path %>
-	  
+	</span>
+ 	  <%= link_to "| PgDn", "#", {:onclick =>'scroll_down();'} %>
 </div>
 
 <%= yield %>
+
+<div style="width: 600px; height:50px; text-align: center;">
+	<span style="font-size: 28px">
+	  <%= link_to "Memos", memos_path %>
+	  <%= link_to "Tasks", tasks_path %>
+	  <%= link_to "Capsels",  capsels_path %>
+	</span>
+ 	  <%= link_to "| PgUp", "#", {:onclick =>'scroll_up();'} %>
+</div>
 
 </body>
 </html>
