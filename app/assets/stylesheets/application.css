@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require hover
  */
 .data{
 width:500px;
@@ -129,8 +130,21 @@ border-bottom: 1px solid #ccc;
     background-color: pink;
 
 }
-  
 
 .task_start {
   color: red;
+}
+
+a:hover {
+color:black;
+background-color:transparent;
+text-decoration: none;
+
+}
+
+.menu a:hover,
+.menu a:link,
+.menu a:visited{
+  color: black;
+  background-color: gray;
 }

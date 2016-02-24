@@ -48,3 +48,4 @@ group :development do
 end
 
 gem 'holiday_jp'
+gem 'hover-rails'

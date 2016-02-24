@@ -8,13 +8,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+
 <div style="width: 600px; height:50px; text-align: center;">
 	<span style="font-size: 28px">
-	  <%= link_to "Memos", memos_path %>
-	  <%= link_to "Tasks", tasks_path, :onclick => 'scroll_down();' %>
-	  <%= link_to "Capsels",  capsels_path %>
+	  <%= link_to "Memos", memos_path, :class=>"#{pick_eff} menu"%>
+	  <%= link_to "Tasks", tasks_path, :onclick => 'scroll_down();', :class=>pick_eff%>
+	  <%= link_to "Capsels",  capsels_path, :class=>pick_eff%>
 	</span>
- 	  <%= link_to "| PgDn", "#", {:onclick =>'scroll_down();'} %>
+ 	  <%= link_to "| PgDn", "#", {:onclick =>'scroll_down();',:class=>pick_eff}%>
 </div>
 
 <%= yield %>
