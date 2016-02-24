@@ -1,7 +1,19 @@
 <script>
-  $(window).load(function() {
-  $("html, body").animate({ scrollTop: $(document).height() }, 200);
+
+function scroll_down()
+{
+  setTimeout(function() {
+    $("html, body").animate({ scrollTop: $(document).height() }, 200);
+  }, 500);
+  //$("html, body").animate({ scrollTop: $(document).height() }, 200);
+}
+
+
+$(window).load(function() {
+  scroll_down();
 });
+
+
 </script>
 
 <p id="notice"><%= notice %></p>
@@ -41,6 +53,6 @@
 <% end %>
 <br>
 
-<%= link_to 'START', :action=>"start"%>
+<%= link_to 'START',{:action=>"start"}, {:id=>"start"}%>
 
 <hr>
