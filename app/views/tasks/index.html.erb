@@ -2,12 +2,15 @@
 
 function scroll_down()
 {
-  setTimeout(function() {
-    $("html, body").animate({ scrollTop: $(document).height() }, 200);
-  }, 500);
+  $("html, body").animate({ scrollTop: $(document).height() }, 'slow');
   //$("html, body").animate({ scrollTop: $(document).height() }, 200);
 }
 
+function scroll_up()
+{
+  $("html, body").animate({ scrollTop: 0 }, 'slow');
+  //$("html, body").animate({ scrollTop: $(document).height() }, 200);
+}
 
 $(window).load(function() {
   scroll_down();
@@ -25,7 +28,7 @@ $(window).load(function() {
   <%= tasks[0].start.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[tasks[0].start.wday]})")%>
 
   <table class="task_data">
-    <thead>
+    <thead>ほげ
       <tr>
         <th class="start">Start</th>
         <th class="end">End</th>
