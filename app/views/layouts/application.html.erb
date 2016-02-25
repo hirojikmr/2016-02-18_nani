@@ -9,10 +9,18 @@
 </head>
 <body>
 
+<!-- devise -->
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<!-- menu -->
 <%= render :partial=>"layouts/nav", :locals=>{pd:"YES", pu:"NO"} %>
 
+<!-- content_START -->
 <%= yield %>
+<!-- content_END -->
 
+<!-- menu -->
 <%= render :partial=>"layouts/nav",:locals=>{pd:"NO", pu:"YES"} %>
 
 </body>

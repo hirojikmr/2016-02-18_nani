@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :capsels
   get 'tasks/start' => 'tasks#start'
   post 'memos/periodic_save'  => 'memos#periodic_save'
