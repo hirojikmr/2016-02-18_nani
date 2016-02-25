@@ -8,7 +8,9 @@
         url: "<%= memos_periodic_save_path %>",
         data: {
           id: "<%= @memo.id %>",
-          body: document.getElementById('memo_body').value,
+          body : document.getElementById('memo_body' ).value,
+          body2: document.getElementById('memo_body2').value,
+          body3: document.getElementById('memo_body3').value,
           date:"<%= @memo.date %>"
         },
         success: function(j_data){
@@ -69,22 +71,15 @@
     </div>
     <div>
       <div class="field" style="float:left; width: col_width">
-        <!--<%= f.label :body %><br>-->
         <%= f.text_area :body, :cols=> col_cnt, :rows=>row_cnt, :onchange=>"update_db();" %>
       </div>
       <div class="field" style="float:left; width: col_width">
-        <%= text_area_tag 'sec2', "",:cols=> col_cnt,  :rows=>row_cnt %>
+        <%= f.text_area :body2, :cols=> col_cnt, :rows=>row_cnt, :onchange=>"update_db();" %>
       </div>
       <div class="field" style="float:left; width: col_width">
-        <%= text_area_tag 'sec2', "", :cols=> col_cnt, :rows=>row_cnt %>
+        <%= f.text_area :body3, :cols=> col_cnt, :rows=>row_cnt, :onchange=>"update_db();" %>
       </div>
     </div>
 
-
-    <!--
-    <div class="actions" style="text-align: right">
-      <%= f.submit "save" %>
-    </div>
-    -->
   </div>
 <% end %>

@@ -10,8 +10,8 @@ class MemosController < ApplicationController
   #  (_form.html.erb)
   def periodic_save
     memo=Memo.find(params[:id])
-    memo.assign_attributes(:body=>params[:body])
-    memo.body = nil if memo.body==""
+    memo.assign_attributes(:body=>params[:body],:body2=>params[:body2],:body3=>params[:body3])
+#    memo.body = nil if memo.body==""
 
     # 保存できたらOK
     if memo.save
@@ -71,7 +71,9 @@ class MemosController < ApplicationController
       # 前のMemoを取得
       @prev_memo = Memo.find(params[:prev_id])
       # bodyをコピーする
-      @new_memo.body = @prev_memo.body
+      @new_memo.body  = @prev_memo.body
+      @new_memo.body2 = @prev_memo.body2
+      @new_memo.body3 = @prev_memo.body3
     end
     @new_memo.save
 
@@ -96,8 +98,13 @@ class MemosController < ApplicationController
     if params[:copy]=="YES" 
       # 前日のbodyをコピーする
       @memo.body = "" if @memo.body.nil?
-      @memo.body += "\n"
-      @memo.body += @prev_day_memo.body
+      @memo.body += @prev_day_memo.body unless @prev_day_memo.body.nil?
+
+      @memo.body2 = "" if @memo.body2.nil?
+      @memo.body2 += @prev_day_memo.body2 unless @prev_day_memo.body2.nil?
+
+      @memo.body3 = "" if @memo.body3.nil? 
+      @memo.body3 += @prev_day_memo.body3 unless @prev_day_memo.body3.nil?
     end
     @memo.save
 
@@ -152,7 +159,7 @@ class MemosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def memo_params
-      params.require(:memo).permit(:id, :date, :body)
+      params.require(:memo).permit(:id, :date, :body, :body2, :body3)
     end
 
     # Returns array of weeks of the year/month.
