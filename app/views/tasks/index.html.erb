@@ -23,12 +23,14 @@ $(window).load(function() {
 
 <h1>Listing Tasks</h1>
 
+<%= render :partial=>"kiroku_link" %>
+
 
 <% @days_tasks.each do |tasks| %>
   <%= tasks[0].start.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[tasks[0].start.wday]})")%>
 
   <table class="task_data">
-    <thead>ほげ
+    <thead>
       <tr>
         <th class="start">Start</th>
         <th class="end">End</th>
@@ -56,6 +58,5 @@ $(window).load(function() {
 <% end %>
 <br>
 
-<%= link_to 'START',{:action=>"start"}, {:id=>"start"}%>
-
+<%= render :partial=>"kiroku_link" %>
 <hr>

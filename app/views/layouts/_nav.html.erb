@@ -1,0 +1,16 @@
+
+<div style="width: 600px; height:50px; text-align: center;">
+	<span style="font-size: 28px">
+	  <%= link_to "Memos", memos_path, :class=>"#{pick_eff} menu"%>
+	  <%= link_to "Tasks", tasks_path, :onclick => 'scroll_down();', :class=>pick_eff%>
+	  <%= link_to "Capsels",  capsels_path, :class=>pick_eff%>
+	</span>
+
+	<% if pd == "YES" %>
+ 		<%= link_to "| PgDn", "#", {:onclick =>'scroll_down();',:class=>pick_eff}%>
+	<% end %>
+
+	<% if pu == "YES" %>
+ 		<%= link_to "| PgUp", "#", {:onclick =>'scroll_up();',:class=>pick_eff}%>
+	<% end %>
+</div>

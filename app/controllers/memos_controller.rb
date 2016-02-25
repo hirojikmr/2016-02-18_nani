@@ -1,20 +1,19 @@
 class MemosController < ApplicationController
-  before_action :set_memo, only: [:show,:edit,  :update, :destroy]
+  before_action :set_memo, only: [:show, :update, :destroy]
   before_action :set_title
 
 
-
-  #登録されている予定の配列
-  @yotei
-
   @title="Memos"
 
-
-  def hoge
+  # 定期的に保存する
+  #   javascriptから定期的に呼び出す 
+  #  (_form.html.erb)
+  def periodic_save
     memo=Memo.find(params[:id])
     memo.assign_attributes(:body=>params[:body])
     memo.body = nil if memo.body==""
 
+    # 保存できたらOK
     if memo.save
       render :text=>"OK"
     else
@@ -26,7 +25,6 @@ class MemosController < ApplicationController
   # GET /memos
   # GET /memos.json
   def index
-    #
     #
     # 　複数のカレンダーを表示できるようにする
     #
@@ -63,28 +61,43 @@ class MemosController < ApplicationController
     
   end
 
-
   # GET /memos/new
   def new
-    @memo = Memo.new(:date=>params[:date])
-    #@memo = Memo.new(memo_params)
-    @memo.save
+
+    @new_memo = Memo.new(:date=>params[:date])
+
+    # 複写する場合
+    if params[:copy]=="YES"
+      # 前のMemoを取得
+      @prev_memo = Memo.find(params[:prev_id])
+      # bodyをコピーする
+      @new_memo.body = @prev_memo.body
+    end
+    @new_memo.save
+
+    # 編集状態で開く
+    redirect_to edit_memo_path(@new_memo)
   end
+
 
   # GET /memos/1/edit
   def edit
-=begin
-    day=params[:day]
-    month=params[:month]
-    year = params[:year]
-    memos = Memo.where :date=> sprintf("%04d-%02d-%02d",year,month,day)
-    if memos.empty? 
-      @memo = Memo.new
-      render "new"
-    else
-      @memo = memos[0]
+
+    @memo = Memo.find(params[:id])
+
+    # 全ての予定を取得
+    @yotei = Memo.all
+    # 前日のMemo取得
+    @prev_day_memo = get_memo_by_date_fast_obj @memo.date-1
+    # 翌日のMemo取得
+    @next_day_memo = get_memo_by_date_fast_obj @memo.date+1
+
+    # コピー要求があり、メモがからの場合
+    if params[:copy]=="YES" && @memo.body.nil?
+      # 前日のbodyをコピーする
+      @memo.body = @prev_day_memo.body
     end
-=end
+    @memo.save
 
   end
 
@@ -190,7 +203,7 @@ class MemosController < ApplicationController
       if day.nil?
         nil
       else
-        yotei = find_memo sprintf("%04d-%02d-%02d",year,month,day)
+        yotei = _find_memo sprintf("%04d-%02d-%02d",year,month,day)
         if yotei.nil?
           Memo.new(:date=> sprintf("%04d-%02d-%02d",year,month,day), :id=>0)
         else
@@ -198,12 +211,14 @@ class MemosController < ApplicationController
         end
       end
     end
-
+    def get_memo_by_date_fast_obj( date )
+      get_memo_by_date_fast( date.year, date.month, date.day ) 
+    end
     #
-    #  日付をしていして　予定を取り出す
+    #  日付を指定して　予定を取り出す
     #  (@yotei配列から）
     #
-    def find_memo( date )
+    def _find_memo( date )
       @yotei.each do |y|
         if y.date.to_s == date
           return y
