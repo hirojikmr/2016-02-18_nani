@@ -19,7 +19,7 @@
   }
   //----------------------------------------------------------//
 <% end %>
-<div style="width: 600px">
+<div style="">
 <%= form_for(@memo) do |f| %>
   <% if @memo.errors.any? %>
     <div id="error_explanation">
@@ -36,7 +36,7 @@
   <div >
 
     <div>
-      <h2 class="entry_title"> 
+      <h2 class="entry_title" > 
 
         <% str= "< " %>
         <% if !@prev_day_memo.nil?  %>
@@ -51,7 +51,7 @@
                     (link_to str, :action=>"new", :params=>{:date=>@next_day_memo.date}) %>
         <% end %>
 
-        <% str= " <コピー> " %>
+        <% str= " <CoPy> " %>
         <% if !@next_day_memo.nil?  %>
           <%= @next_day_memo.id!=0? (link_to str, edit_memo_path(@next_day_memo,{:copy=>"YES"})):
                     (link_to str, :action=>"new", :params=>{:date=>@next_day_memo.date,:copy=>"YES",:prev_id=>@memo.id}) %>
@@ -60,14 +60,27 @@
       </h2>
     </div>
 
+    <% row_cnt=40 %>
+    <% col_cnt=65 %>
+    <% col_width="400px" %>
     <div class="field" style="display:none">
       <%= f.label :date %><br>
       <%= f.datetime_select :date %>
     </div>
-    <div class="field">
-      <!--<%= f.label :body %><br>-->
-      <%= f.text_area :body, :size=>"70x20", :onchange=>"update_db();" %>
+    <div>
+      <div class="field" style="float:left; width: col_width">
+        <!--<%= f.label :body %><br>-->
+        <%= f.text_area :body, :cols=> col_cnt, :rows=>row_cnt, :onchange=>"update_db();" %>
+      </div>
+      <div class="field" style="float:left; width: col_width">
+        <%= text_area_tag 'sec2', "",:cols=> col_cnt,  :rows=>row_cnt %>
+      </div>
+      <div class="field" style="float:left; width: col_width">
+        <%= text_area_tag 'sec2', "", :cols=> col_cnt, :rows=>row_cnt %>
+      </div>
     </div>
+
+
     <!--
     <div class="actions" style="text-align: right">
       <%= f.submit "save" %>

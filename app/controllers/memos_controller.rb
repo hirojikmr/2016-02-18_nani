@@ -95,6 +95,7 @@ class MemosController < ApplicationController
     # コピー要求があり
     if params[:copy]=="YES" 
       # 前日のbodyをコピーする
+      @memo.body = "" if @memo.body.nil?
       @memo.body += "\n"
       @memo.body += @prev_day_memo.body
     end
