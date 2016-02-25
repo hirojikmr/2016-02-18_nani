@@ -92,10 +92,11 @@ class MemosController < ApplicationController
     # 翌日のMemo取得
     @next_day_memo = get_memo_by_date_fast_obj @memo.date+1
 
-    # コピー要求があり、メモがからの場合
-    if params[:copy]=="YES" && @memo.body.nil?
+    # コピー要求があり
+    if params[:copy]=="YES" 
       # 前日のbodyをコピーする
-      @memo.body = @prev_day_memo.body
+      @memo.body += "\n"
+      @memo.body += @prev_day_memo.body
     end
     @memo.save
 
