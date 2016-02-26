@@ -17,12 +17,11 @@
         success: function(j_data){
 
           // 処理を記述
-        }
+        }.e
     });
   }
   //----------------------------------------------------------//
 <% end %>
-<div style="">
 <%= form_for(@memo) do |f| %>
   <% if @memo.errors.any? %>
     <div id="error_explanation">
@@ -59,17 +58,16 @@
           <%= @next_day_memo.id!=0? (link_to str, edit_memo_path(@next_day_memo,{:copy=>"YES"})):
                     (link_to str, :action=>"new", :params=>{:date=>@next_day_memo.date,:copy=>"YES",:prev_id=>@memo.id}) %>
         <% end %>
-
       </h2>
     </div>
 
     <!-- body..body3 --> 
-    <% row_cnt=40 %>
+    <% row_cnt=55 %>
     <% col_cnt=65 %>
     <% col_width="400px" %>
     <!-- body4 --> 
     <% col_width_plan="100px" %>
-    <% row_cnt_plan=40 %>
+    <% row_cnt_plan=55 %>
     <% col_cnt_plan=19 %>
 
     <div class="field" style="display:none">

@@ -25,6 +25,7 @@ class MemosController < ApplicationController
   # GET /memos
   # GET /memos.json
   def index
+    @title = "Cal" 
     #
     # 　複数のカレンダーを表示できるようにする
     #
@@ -85,6 +86,7 @@ class MemosController < ApplicationController
 
   # GET /memos/1/edit
   def edit
+    @title = "memo"
 
     @memo = Memo.find(params[:id])
 

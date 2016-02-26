@@ -10,11 +10,16 @@
 <body>
 
 <!-- devise -->
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<!--<p class="notice"><%= notice %></p>-->
+<!--<p class="alert"><%= alert %></p>-->
+<% flash.each do |name, msg| %>
+	<%= content_tag(:div, msg, class: "alert alert-info") %>
+<% end %>
 
 <!-- menu -->
-<%= render :partial=>"layouts/nav", :locals=>{pd:"YES", pu:"NO"} %>
+<% if @title != "memo"  %>
+	<%= render :partial=>"layouts/nav", :locals=>{pd:"YES", pu:"NO"} %>
+<% end %>
 
 <!-- content_START -->
 <%= yield %>
