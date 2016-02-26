@@ -18,28 +18,29 @@
   <% end %>
 
 </br>
-<div style="clear: both;   ">
-<!-- Memo List -->
-<hr>
-<table>
+  <div style="clear: both;   ">
+    <!-- Memo List -->
 
-  <tbody>
-    <% @memos.each do |memo| %>
-      <tr>
-        <td><%= memo.date.strftime("%m/%d")%><br><pre><%= memo.body %></pre></td>
+    <!--
+    <hr>
+    <table>
 
-     </tr>
-     <tr>
-        <td style="text-align:right;">
-        <%= link_to  edit_memo_path(memo) do %><i class="glyphicon glyphicon-pencil"></i><% end %>
-        <%= link_to  memo, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="glyphicon glyphicon-trash"></i><% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
+      <tbody>
+        <% @memos.each do |memo| %>
+          <tr>
+            <td><%= memo.date.strftime("%m/%d")%><br><pre><%= memo.body %></pre></td>
+
+         </tr>
+         <tr>
+            <td style="text-align:right;">
+            <%= link_to  edit_memo_path(memo) do %><i class="glyphicon glyphicon-pencil"></i><% end %>
+            <%= link_to  memo, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="glyphicon glyphicon-trash"></i><% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    -->
+  </div>
 <br>
-
 </div>
-<%#= link_to 'New Memo', new_memo_path %>
