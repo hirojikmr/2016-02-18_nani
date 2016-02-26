@@ -10,7 +10,7 @@ class MemosController < ApplicationController
   #  (_form.html.erb)
   def periodic_save
     memo=Memo.find(params[:id])
-    memo.assign_attributes(:body=>params[:body],:body2=>params[:body2],:body3=>params[:body3])
+    memo.assign_attributes(:body=>params[:body],:body2=>params[:body2],:body3=>params[:body3],:body4=>params[:body4],)
 #    memo.body = nil if memo.body==""
 
     # 保存できたらOK
@@ -74,6 +74,7 @@ class MemosController < ApplicationController
       @new_memo.body  = @prev_memo.body
       @new_memo.body2 = @prev_memo.body2
       @new_memo.body3 = @prev_memo.body3
+      @new_memo.body4 = @prev_memo.body4
     end
     @new_memo.save
 
@@ -105,6 +106,9 @@ class MemosController < ApplicationController
 
       @memo.body3 = "" if @memo.body3.nil? 
       @memo.body3 += @prev_day_memo.body3 unless @prev_day_memo.body3.nil?
+
+      @memo.body4 "" if @memo.body4.nil? 
+      @memo.body4 += @prev_day_memo.body4 unless @prev_day_memo.body4.nil?
     end
     @memo.save
 
@@ -159,7 +163,7 @@ class MemosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def memo_params
-      params.require(:memo).permit(:id, :date, :body, :body2, :body3)
+      params.require(:memo).permit(:id, :date, :body, :body2, :body3, :body4)
     end
 
     # Returns array of weeks of the year/month.

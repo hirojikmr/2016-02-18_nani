@@ -11,6 +11,7 @@
           body : document.getElementById('memo_body' ).value,
           body2: document.getElementById('memo_body2').value,
           body3: document.getElementById('memo_body3').value,
+          body4: document.getElementById('memo_body4').value,
           date:"<%= @memo.date %>"
         },
         success: function(j_data){
@@ -62,9 +63,15 @@
       </h2>
     </div>
 
+    <!-- body..body3 --> 
     <% row_cnt=40 %>
     <% col_cnt=65 %>
     <% col_width="400px" %>
+    <!-- body4 --> 
+    <% col_width_plan="100px" %>
+    <% row_cnt_plan=40 %>
+    <% col_cnt_plan=19 %>
+
     <div class="field" style="display:none">
       <%= f.label :date %><br>
       <%= f.datetime_select :date %>
@@ -78,6 +85,9 @@
       </div>
       <div class="field" style="float:left; width: col_width">
         <%= f.text_area :body3, :cols=> col_cnt, :rows=>row_cnt, :onchange=>"update_db();" %>
+      </div>
+      <div class="field" style="float:left; width: col_width_plan">
+        <%= f.text_area :body4, :cols=> col_cnt_plan, :rows=>row_cnt_plan, :onchange=>"update_db();" %>
       </div>
     </div>
 
