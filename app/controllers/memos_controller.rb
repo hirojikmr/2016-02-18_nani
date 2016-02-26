@@ -109,7 +109,7 @@ class MemosController < ApplicationController
       @memo.body3 = "" if @memo.body3.nil? 
       @memo.body3 += @prev_day_memo.body3 unless @prev_day_memo.body3.nil?
 
-      @memo.body4 "" if @memo.body4.nil? 
+      @memo.body4 = "" if @memo.body4.nil? 
       @memo.body4 += @prev_day_memo.body4 unless @prev_day_memo.body4.nil?
     end
     @memo.save
