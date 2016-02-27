@@ -12,7 +12,9 @@
 
 <p>
   <strong>Dur:</strong>
-  <%= @task.dur %>
+  <%#= @task.dur %>
+  <%= (Time.at @task.end-@task.start).utc.strftime "%H:%M:%S"%>
+
 </p>
 
 <p>

@@ -4,6 +4,9 @@ class TasksController < ApplicationController
 
 
 
+  #
+  #  このタイミングでタスクを記録している
+  #
   def start
     @task = Task.new
     last_task = Task.last
@@ -16,7 +19,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    
+     
     @days_tasks = get_days_tasks
 
   end
@@ -40,7 +43,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.end = Time.now
-    @task.dur = Time.at(@task.end-@task.start)
+    #@task.dur = Time.at(@task.end-@task.start)
 
     #respond_to do |format|
       if @task.save
@@ -62,6 +65,9 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
+
+    # タスクの時間
+    #@task.dur = Time.at(@task.end-@task.start)
 
     respond_to do |format|
       if @task.update(task_params)
@@ -93,7 +99,8 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:start, :end, :dur, :body)
+      #params.require(:task).permit(:start, :end, :dur, :body)
+      params.require(:task).permit(:start, :end, :body, :show_flg)
     end
 
 

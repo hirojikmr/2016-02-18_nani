@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226000925) do
+ActiveRecord::Schema.define(version: 20160227004734) do
 
   create_table "capsels", force: :cascade do |t|
     t.date     "start"
@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 20160226000925) do
   create_table "tasks", force: :cascade do |t|
     t.datetime "start"
     t.datetime "end"
-    t.datetime "dur"
     t.text     "body",       limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.boolean  "show_flg",                 default: true
   end
 
   create_table "users", force: :cascade do |t|

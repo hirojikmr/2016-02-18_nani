@@ -42,15 +42,18 @@ $(window).load(function() {
 
     <tbody>
       <% tasks.each do |task| %>
-        <tr class="<%= task.start.hour.even? ? "even_hour":"odd_hour"%>">
-          <td><%= task.start.strftime "%H:%M" %></td>
-          <td><%= task.end.strftime " %H:%M" %></td>
-          <td><%= task.dur.utc.strftime "%H:%M:%S" unless task.dur.nil? %></td>
-          <td><pre><%= task.body %></pre></td>
-          <td><%= link_to  task do %><i class="glyphicon glyphicon-eye-open"></i><% end %></td>
-          <td><%= link_to  edit_task_path(task) do %><i class="glyphicon glyphicon-pencil"></i><% end %></td>
-          <td><%= link_to  task, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="glyphicon glyphicon-trash"><% end %></i></td>
-        </tr>
+        <% if task.show_flg == true %>
+          <tr class="<%= task.start.hour.even? ? "even_hour":"odd_hour"%>">
+            <td><%= task.start.strftime "%H:%M" %></td>
+            <td><%= task.end.strftime " %H:%M" %></td>
+            <!--<td><%#= (task.dur).utc.strftime "%H:%M:%S" unless task.dur.nil? %></td>-->
+            <td><%= (Time.at task.end-task.start).utc.strftime "%H:%M:%S"%></td>
+            <td><pre><%= task.body %></pre></td>
+            <td><%= link_to  task do %><i class="glyphicon glyphicon-eye-open"></i><% end %></td>
+            <td><%= link_to  edit_task_path(task) do %><i class="glyphicon glyphicon-pencil"></i><% end %></td>
+            <td><%= link_to  task, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="glyphicon glyphicon-trash"><% end %></i></td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
