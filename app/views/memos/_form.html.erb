@@ -1,4 +1,5 @@
 
+<%= javascript_include_tag 'behave.js', 'data-turbolinks-track' => true %>
 <%= javascript_tag do %>
 
   //----------------------------------------------------------//
@@ -22,6 +23,39 @@
   }
   //----------------------------------------------------------//
 <% end %>
+
+
+<style type='text/css'>
+
+  textarea{
+    width:400px;
+    border:1px solid #999;
+    padding:1px;
+    font-family: monospace;
+    font-size:13px;
+    }
+    textarea:focus{
+      border-color:#333;
+    }
+</style>
+
+<script type="text/javascript">
+  $(document).ready( function() {
+    ["memo_body","memo_body2","memo_body3","memo_body4"].map( function( text_area_id ) {
+        var editor = new Behave({
+          textarea:     document.getElementById(  text_area_id ),
+          replaceTab:   true,
+            softTabs:     true,
+            tabSize:    2,
+            autoOpen:     true,
+            overwrite:    true,
+            autoStrip:    true,
+            autoIndent:   true
+        });
+    });
+  });
+</script>
+
 <%= form_for(@memo) do |f| %>
   <% if @memo.errors.any? %>
     <div id="error_explanation">
@@ -39,7 +73,6 @@
 
     <div>
       <h2 class="entry_title" > 
-
         <% str= "< " %>
         <% if !@prev_day_memo.nil?  %>
           <%= @prev_day_memo.id!=0? (link_to str, edit_memo_path(@prev_day_memo)):
