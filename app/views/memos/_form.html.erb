@@ -12,12 +12,12 @@
           body2: document.getElementById('memo_body2').value,
           body3: document.getElementById('memo_body3').value,
           body4: document.getElementById('memo_body4').value,
+          body5: document.getElementById('memo_body5').value,
           date:"<%= @memo.date %>"
         },
         success: function(j_data){
-
-          // 処理を記述
-        }.e
+          document.getElementById('memo_body5').value = j_data
+        }
     });
   }
   //----------------------------------------------------------//
@@ -39,7 +39,7 @@
 
 <script type="text/javascript">
   $(document).ready( function() {
-    ["memo_body","memo_body2","memo_body3","memo_body4"].map( function( text_area_id ) {
+    ["memo_body","memo_body2","memo_body3","memo_body4", "memo_body5"].map( function( text_area_id ) {
         var editor = new Behave({
           textarea:     document.getElementById(  text_area_id ),
           replaceTab:   true,
@@ -67,10 +67,11 @@
     </div>
   <% end %>
 
-  <div >
+<% h="50px" %>
 
-    <div>
-      <h2 class="entry_title" > 
+  <div >
+    <div class="entry_title" style="height: <%=h%>; padding: 0; margin: 0;"> 
+      <div style="height: <%=h%>; width:200px; background-color: pink; float:left; padding: 0; margin: 0;">
         <% str= "< " %>
         <% if !@prev_day_memo.nil?  %>
           <%= @prev_day_memo.id!=0? (link_to str, edit_memo_path(@prev_day_memo)):
@@ -89,17 +90,21 @@
           <%= @next_day_memo.id!=0? (link_to str, edit_memo_path(@next_day_memo,{:copy=>"YES"})):
                     (link_to str, :action=>"new", :params=>{:date=>@next_day_memo.date,:copy=>"YES",:prev_id=>@memo.id}) %>
         <% end %>
-      </h2>
-    </div>
+      </div>
 
-    <!-- body..body3 --> 
-    <% row_cnt=55 %>
-    <% col_cnt=75 %>
-    <% col_width="400px" %>
-    <!-- body4 --> 
-    <% col_width_plan="100px" %>
-    <% row_cnt_plan=55 %>
-    <% col_cnt_plan=20 %>
+      <div class="field" style="width:1500px; height:<%=h%> ; float:left; padding: 0; margin: 0;background-color:yellow;">
+          <%= f.text_area :body5, :cols=> 1000, :rows=>5, :style=>"height:50px; padding:0; margin:0;", :onchange=>"update_db();" %>
+      </div>
+    </div>
+    <div style="clear:both;"></div>
+  <!-- body〜body3 --> 
+  <% row_cnt=55 %>
+  <% col_cnt=75 %>
+  <% col_width="400px" %>
+  <!-- body4 --> 
+  <% col_width_plan="100px" %>
+  <% row_cnt_plan=55 %>
+  <% col_cnt_plan=20 %>
 
     <div class="field" style="display:none">
       <%= f.label :date %><br>
@@ -107,7 +112,7 @@
     </div>
     <div>
       <div class="field" style="float:left; width: col_width">
-        <%= f.text_area :body, :cols=> col_cnt, :rows=>row_cnt, :onchange=>"update_db();" %>
+        <%= f.text_area :body, :cols=> col_cnt, :rows=>row_cnt, :onkeyup=>"update_db();" %>
       </div>
       <div class="field" style="float:left; width: col_width">
         <%= f.text_area :body2, :cols=> col_cnt, :rows=>row_cnt, :onchange=>"update_db();" %>

@@ -61,5 +61,39 @@ $(window).load(function() {
 <% end %>
 <br>
 
-<%= render :partial=>"kiroku_link" %>
-<hr>
+<div style="width: 600px">
+  <p id="notice"><%= notice %></p>
+
+  <h2 class="entry_title">＜記録する内容＞</h2>
+
+  <% @task = Task.new %>
+
+  <%= form_for(@task) do |f| %>
+    <% if @task.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+        <ul>
+        <% @task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field" style="display:none">
+      <%= f.label :start %><br>
+      <%= f.datetime_select :start,:include_seconds => true, :order => [:month, :day, :year, :hour, :minute, :second] %>
+    </div>
+
+    <div class="field">
+      <div class="txt_cont">
+        <%= f.text_area :body, size:"x10"  %>
+      </div>
+    </div>
+    <div class="actions" style="text-align: right">
+      <%= f.submit "記録"  %>
+    </div>
+  <% end %>
+
+</div>

@@ -10,16 +10,31 @@ class MemosController < ApplicationController
   #  (_form.html.erb)
   def periodic_save
     memo=Memo.find(params[:id])
-    memo.assign_attributes(:body=>params[:body],:body2=>params[:body2],:body3=>params[:body3],:body4=>params[:body4],)
-#    memo.body = nil if memo.body==""
+    memo.assign_attributes(:body=>params[:body],:body2=>params[:body2],:body3=>params[:body3],:body4=>params[:body4], :body5=>params[:body5])
+
 
     # 保存できたらOK
     if memo.save
-      render :text=>"OK"
+      #render :text=>"OK" 
+      #render :text=> Time.now.to_s #calc_jisseki(params[:body])
+      render :text=> calc_jisseki(params[:body])
     else
       render :text =>"NG"
     end
   end
+
+  def calc_jisseki(str)
+      # 実績の文字列を切り出す
+=begin
+      total=Time.parse("00:00:00")
+      (str.scan /.*\(実(.*).*\)/).each do |tm_str|
+        total += Time.parse(tm_str[0])
+      end
+      total.to_s
+=end
+      (str.scan /.*\(実(.*).*\)/).to_s
+  end
+
 
 
   # GET /memos
@@ -64,7 +79,9 @@ class MemosController < ApplicationController
 
   # GET /memos/new
   def new
-
+    render :text=>"memo_controller.rb#new"
+    return
+=begin
     @new_memo = Memo.new(:date=>params[:date])
 
     # 複写する場合
@@ -72,7 +89,7 @@ class MemosController < ApplicationController
       # 前のMemoを取得
       @prev_memo = Memo.find(params[:prev_id])
       # bodyをコピーする
-      @new_memo.body  = @prev_memo.body
+      @new_memo.body  = filter_out_ok @prev_memo.body
       @new_memo.body2 = @prev_memo.body2
       @new_memo.body3 = @prev_memo.body3
       @new_memo.body4 = @prev_memo.body4
@@ -81,7 +98,9 @@ class MemosController < ApplicationController
 
     # 編集状態で開く
     redirect_to edit_memo_path(@new_memo)
+=end
   end
+
 
 
   # GET /memos/1/edit
@@ -100,20 +119,28 @@ class MemosController < ApplicationController
     # コピー要求があり
     if params[:copy]=="YES" 
       # 前日のbodyをコピーする
-      @memo.body = "" if @memo.body.nil?
-      @memo.body += @prev_day_memo.body unless @prev_day_memo.body.nil?
+      @memo.body   = @memo.body.to_s
+      @memo.body  += filter_out_OK @prev_day_memo.body.to_s 
+      
+      @memo.body2  = @memo.body2.to_s
+      @memo.body2 += filter_out_OK @prev_day_memo.body2.to_s
 
-      @memo.body2 = "" if @memo.body2.nil?
-      @memo.body2 += @prev_day_memo.body2 unless @prev_day_memo.body2.nil?
+      @memo.body3  = @memo.body3.to_s
+      @memo.body3 += filter_out_OK @prev_day_memo.body3.to_s
 
-      @memo.body3 = "" if @memo.body3.nil? 
-      @memo.body3 += @prev_day_memo.body3 unless @prev_day_memo.body3.nil?
+      @memo.body4  = @memo.body4.to_s
+      @memo.body4 += filter_out_OK @prev_day_memo.body4.to_s
 
-      @memo.body4 = "" if @memo.body4.nil? 
-      @memo.body4 += @prev_day_memo.body4 unless @prev_day_memo.body4.nil?
+      @memo.body5  = @memo.body5.to_s
+      @memo.body5 += filter_out_OK @prev_day_memo.body5.to_s
     end
     @memo.save
 
+  end
+
+  def filter_out_OK ( str)
+    # OKから始まる行を排除する
+    str.gsub(/^OK.*$\n/,'')
   end
 
   # POST /memos
@@ -165,7 +192,7 @@ class MemosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def memo_params
-      params.require(:memo).permit(:id, :date, :body, :body2, :body3, :body4)
+      params.require(:memo).permit(:id, :date, :body, :body2, :body3, :body4, :body5)
     end
 
     # Returns array of weeks of the year/month.

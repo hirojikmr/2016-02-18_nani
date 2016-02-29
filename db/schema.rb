@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227004734) do
+ActiveRecord::Schema.define(version: 20160229052703) do
 
   create_table "capsels", force: :cascade do |t|
     t.date     "start"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20160227004734) do
     t.text     "body2",      limit: 65535
     t.text     "body3",      limit: 65535
     t.text     "body4",      limit: 65535
+    t.text     "body5",      limit: 65535
   end
 
   create_table "tasks", force: :cascade do |t|

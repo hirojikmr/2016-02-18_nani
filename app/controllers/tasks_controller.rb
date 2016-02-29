@@ -42,6 +42,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
+    @task.start = Task.last.end
     @task.end = Time.now
     #@task.dur = Time.at(@task.end-@task.start)
 
