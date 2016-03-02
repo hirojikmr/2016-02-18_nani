@@ -19,9 +19,20 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-     
     @days_tasks = get_days_tasks
+    
+    @tasks = Task.all
+    @tasks.each do |t|
+      t.dur = t.end - t.start
+    end
 
+  end
+
+  def index_visual
+    @tasks = Task.all
+    @tasks.each do |t|
+      t.dur = t.end - t.start
+    end
   end
 
   # GET /tasks/1

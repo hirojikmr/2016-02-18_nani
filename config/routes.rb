@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'tasks/index_visual' => 'tasks#index_visual'
   devise_for :users
   resources :capsels
   get 'tasks/start' => 'tasks#start'

@@ -57,6 +57,51 @@ $(window).load(function() {
       <% end %>
     </tbody>
   </table>
+
+  <!-- index_visual   -->
+
+  <style>
+  .tm_lbl{
+    height: 72px; 
+    width: 50px;
+  }
+  .thin_bdr{
+    border-style: solid; border-width: 0 thin thin 0;
+  }
+  .odd_row{
+    background-color: pink;
+  }
+  .even_row{
+    background-color: lightblue;
+  }
+  </style>
+
+  <div>
+    <div style="float:left">
+      <div style="width:50px; border-style: solid; border-width: 0 thin thin thin; height:1px;"></div>
+      <% (7..24).each do |t| %>
+        <div class="tm_lbl thin_bdr"><%= sprintf("%02d", t) %></div>
+      <% end %>
+    </div>
+
+    <div style="float:left; height:1350px; background-color: gray">
+      <div style="width:300px; border-style: solid; border-width: 0 thin thin thin; height:1px;"></div>
+      <% tasks.each do |t|%>
+        <div class="thin_bdr <%= cycle('odd_row', 'even_row')%>" style="width:300px;  height: <%= (t.end-t.start)/50 %>px;">
+          <%= t.body %>
+        </div>
+      <% end %>
+    </div>
+    <div style="clear: both"></div>
+
+  </div>
+  <hr>
+
+
+
+
+
+
   </br>
 <% end %>
 <br>
