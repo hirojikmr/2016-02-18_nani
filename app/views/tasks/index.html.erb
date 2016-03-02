@@ -76,6 +76,7 @@ $(window).load(function() {
   }
   </style>
 
+  <%= tasks[0].start.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[tasks[0].start.wday]})")%>
   <div>
     <div style="float:left">
       <div style="width:50px; border-style: solid; border-width: 0 thin thin thin; height:1px;"></div>
@@ -85,11 +86,13 @@ $(window).load(function() {
     </div>
 
     <div style="float:left; height:1350px; background-color: gray">
-      <div style="width:300px; border-style: solid; border-width: 0 thin thin thin; height:1px;"></div>
+      <div style="width:500px; border-style: solid; border-width: 0 thin thin thin; height:1px;"></div>
       <% tasks.each do |t|%>
-        <div class="thin_bdr <%= cycle('odd_row', 'even_row')%>" style="width:300px;  height: <%= (t.end-t.start)/50 %>px;">
-          <%= t.body %>
-        </div>
+        <% if t.show_flg == true %>
+          <div class="thin_bdr <%= cycle('odd_row', 'even_row')%>" style="width:500px;  height: <%= (t.end-t.start)/50 %>px;">
+            <%= t.body %>
+          </div>
+        <% end %>
       <% end %>
     </div>
     <div style="clear: both"></div>
