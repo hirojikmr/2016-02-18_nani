@@ -17,7 +17,7 @@ class MemosController < ApplicationController
     if memo.save
       #render :text=>"OK" 
       #render :text=> Time.now.to_s #calc_jisseki(params[:body])
-      render :text=> calc_jisseki([params[:body],params[:body2],params[:body3]])
+      render :text=>"OK" #calc_jisseki([params[:body],params[:body2],params[:body3]])
     else
       render :text =>"NG"
     end
