@@ -95,20 +95,31 @@ $(window).load(function() {
 
 
     <!-- タスクを表示 -->
-    <div style="float:left; height:1350px; background-color: gray">
+    <%
+      #　今日の終わりの時間
+      day_end_tm = first_task.start.change :min=>00, :hour=>24, :sec=>00
+    %>
+    <!-- タスク記入欄の背景 -->
+    <div style="float:left; height:<%= (day_end_tm-day_start_tm)/50 %>px; background-color: gray">
       <div style="width:500px; border-style: solid; border-width: 0 thin thin thin; height:1px;"></div>
 
       <!-- 最初のタスク前　時間調整 -->
-      <div class="thin_bdr" style="background-color:gray; width:500px;  height: <%= (first_task.start-day_start_tm)/50 %>px;"></div>
+      <div class="thin_bdr" style="background-color:gray; width:500px;  height: <%= (first_task.start-day_start_tm)/50 %>px;">
+      </div>
+
+      <!--各タスクを表示 -->
       <% tasks.each do |t|%>
         <% if t.show_flg == true %>
 
-          <!--各タスクを表示 -->
           <div class="thin_bdr <%= cycle('odd_row', 'even_row')%>" style="width:500px;  height: <%= (t.end-t.start)/50 %>px;">
+            <!-- タスク内容 -->
             <%= t.body %>
+            (<%=(Time.at t.end-t.start).utc.strftime "%H:%M" %>)
           </div>
+
         <% end %>
       <% end %>
+
     </div>
     <div style="clear: both"></div>
 
