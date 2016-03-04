@@ -55,6 +55,8 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.start = Task.last.end
     @task.end = Time.now
+
+    @task.show_flg=false if @task.body.match /睡眠/
     #@task.dur = Time.at(@task.end-@task.start)
 
     #respond_to do |format|

@@ -80,6 +80,8 @@ $(window).load(function() {
     first_task = tasks[0]
     # 分を０にセットして本日の開始時間を決定
     day_start_tm = first_task.start.change :min=>0
+
+
   %>
 
   <%= tasks[0].start.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[tasks[0].start.wday]})")%>
@@ -111,7 +113,31 @@ $(window).load(function() {
       <% tasks.each do |t|%>
         <% if t.show_flg == true %>
 
-          <div class="thin_bdr <%= cycle('odd_row', 'even_row')%>" style="width:500px;  height: <%= (t.end-t.start)/50 %>px;">
+          <!-- タスクの色 -->
+          <%
+            #background-color用
+            bg_col_h = {
+              "Nani":"lightblue",
+              "NANI":"lightblue",
+              "nani":"lightblue", 
+              "休憩":"yellow", 
+              "android":"orange", 
+              "計画":"violet", 
+              "食":"tomato",
+              "昼":"tomato"
+              "rails":"HotPink"
+            }
+
+            bg_col="ivory"
+            bg_col_h.each do |word, col|
+              if t.body.match /#{word}/
+                bg_col=col
+                break;
+              end
+            end
+          %>
+
+          <div class="thin_bdr <%= cycle('odd_row', 'even_row')%>" style="width:500px;  height: <%= (t.end-t.start)/50 %>px; background-color: <%=bg_col%>;">
             <!-- タスク内容 -->
             <%= t.body %>
             (<%=(Time.at t.end-t.start).utc.strftime "%H:%M" %>)
