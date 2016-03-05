@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :task_colors
   get 'tasks/index_visual' => 'tasks#index_visual'
   devise_for :users
   resources :capsels

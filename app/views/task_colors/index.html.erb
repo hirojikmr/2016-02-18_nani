@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Task Colors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Text</th>
+      <th>Color</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @task_colors.each do |task_color| %>
+      <tr>
+        <td><%= task_color.text %></td>
+        <td><%= color_field_tag "task_color",task_color.color %></td>
+        <td><%= link_to 'Show', task_color %></td>
+        <td><%= link_to 'Edit', edit_task_color_path(task_color) %></td>
+        <td><%= link_to 'Destroy', task_color, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task color', new_task_color_path %>

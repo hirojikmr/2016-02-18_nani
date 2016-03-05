@@ -115,6 +115,7 @@ $(window).load(function() {
 
           <!-- タスクの色 -->
           <%
+
             #background-color用
             bg_col_h = {
               "^Nani":"lightblue",
@@ -129,6 +130,10 @@ $(window).load(function() {
               "^Java":"MediumPurple",
               "^ふろ":"LightSeaGreen",
             }
+
+            TaskColor.all.each do | tc |
+              bg_col_h.store(tc.text,color)
+            end
 
             bg_col="ivory"
             bg_col_h.each do |word, col|

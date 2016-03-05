@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229052703) do
+ActiveRecord::Schema.define(version: 20160305123202) do
 
   create_table "capsels", force: :cascade do |t|
     t.date     "start"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 20160229052703) do
     t.text     "body3",      limit: 65535
     t.text     "body4",      limit: 65535
     t.text     "body5",      limit: 65535
+  end
+
+  create_table "task_colors", force: :cascade do |t|
+    t.string   "text",       limit: 255
+    t.string   "color",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "tasks", force: :cascade do |t|
