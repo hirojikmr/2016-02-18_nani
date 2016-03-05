@@ -19,13 +19,19 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+
     @days_tasks = get_days_tasks
     
     @tasks = Task.all
     @tasks.each do |t|
       t.dur = t.end - t.start
     end
+  end
 
+
+  def index_today
+    # 数日分だけ
+    @days_tasks = get_days_tasks.last(3)
   end
 
   def index_visual
@@ -63,10 +69,11 @@ class TasksController < ApplicationController
       if @task.save
         @tasks = Task.all
 
-        @days_tasks = get_days_tasks
+        # 数日分だけ
+        @days_tasks = get_days_tasks.last(3)
 
+        render "index_today"
 
-        render "index"
         #format.html { redirect_to @task, notice: 'Task was successfully created.' }
         #format.json { render :show, status: :created, location: @task }
     #  else
@@ -85,7 +92,8 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        #format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to :action=>:index_today, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -118,7 +126,7 @@ class TasksController < ApplicationController
     end
 
 
-    def get_days_tasks
+    def get_days_tasks 
       #no tasks? (THIS ONLY HAPPENS WHEN DB.TABLE IS EMPTY..)
       if Task.all[0].nil?
         return []
@@ -144,4 +152,5 @@ class TasksController < ApplicationController
   def set_title
     @title = "Tasks"
   end
+
 end

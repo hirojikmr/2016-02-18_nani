@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :capsels
   get 'tasks/start' => 'tasks#start'
+  get 'tasks/index_today' => 'tasks#index_today'
   post 'memos/periodic_save'  => 'memos#periodic_save'
   post 'memos/copy_edit' => 'memos#copy_edit'
   resources :memos
