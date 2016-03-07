@@ -1,0 +1,19 @@
+
+<div style="width: 600px; height:50px; text-align: center; font-size: 18px">
+  <div style="float:left">
+    <span >
+      <%= link_to "calendar", memos_path %>
+      <%= link_to "tasks",tasks_index_today_path,:onclick => 'scroll_down();'%>
+      <%= link_to "edit", tasks_path, :onclick => 'scroll_down();'%>
+    </span>
+  </div>
+
+  <div style="float:right">
+    <% if user_signed_in? %>
+      <%= link_to "account" , edit_user_registration_path %>
+      <%= link_to "sign out" , destroy_user_session_path, :method=>:delete %>
+    <% else %>
+      <%= link_to "sign in" , new_user_session_path %>
+    <% end %>
+  </div>
+</div>

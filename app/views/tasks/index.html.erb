@@ -21,7 +21,12 @@ $(window).load(function() {
 
 <p id="notice"><%= notice %></p>
 
+<!-- メニュー -->
+<%= render :partial=>"layouts/nav_new"%>
+
+
 <h1>Listing Tasks</h1>
+
 
 <%= render :partial=>"kiroku_link" %>
 
@@ -132,7 +137,7 @@ $(window).load(function() {
             }
 
             TaskColor.all.each do | tc |
-              bg_col_h.store(tc.text,color)
+              bg_col_h.store(tc.text, tc.color)
             end
 
             bg_col="ivory"
@@ -203,5 +208,8 @@ $(window).load(function() {
       <%= f.submit "記録"  %>
     </div>
   <% end %>
+
+<!-- メニュー -->
+<%= render :partial=>"layouts/nav_new"%>
 
 </div>

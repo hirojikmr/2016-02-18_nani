@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'tasks/index_today' => 'tasks#index_today'
   post 'memos/periodic_save'  => 'memos#periodic_save'
   post 'memos/copy_edit' => 'memos#copy_edit'
+  get 'memos/hoge' => 'memos#hoge'
   resources :memos
   resources :tasks
 

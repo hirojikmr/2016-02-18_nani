@@ -12,17 +12,15 @@
           body2: document.getElementById('memo_body2').value,
           body3: document.getElementById('memo_body3').value,
           body4: document.getElementById('memo_body4').value,
-          body5: document.getElementById('memo_body5').value,
           date:"<%= @memo.date %>"
         },
         success: function(j_data){
-          //document.getElementById('memo_body5').value = j_data
+          //
         }
     });
   }
   //----------------------------------------------------------//
 <% end %>
-
 
 <style type='text/css'>
 
@@ -39,7 +37,7 @@
 
 <script type="text/javascript">
   $(document).ready( function() {
-    ["memo_body","memo_body2","memo_body3","memo_body4", "memo_body5"].map( function( text_area_id ) {
+    ["memo_body","memo_body2","memo_body3","memo_body4"].map( function( text_area_id ) {
         var editor = new Behave({
           textarea:     document.getElementById(  text_area_id ),
           replaceTab:   true,
@@ -71,7 +69,7 @@
 
   <div >
     <div class="entry_title" style="height: <%=h%>; padding: 0; margin: 0;"> 
-      <div style="height: <%=h%>; width:200px; background-color: pink; float:left; padding: 0; margin: 0;">
+      <div style="height: <%=h%>; width:200px;float:left; padding: 0; margin: 0;">
         <% str= "< " %>
         <% if !@prev_day_memo.nil?  %>
           <%= @prev_day_memo.id!=0? (link_to str, edit_memo_path(@prev_day_memo)):
@@ -92,8 +90,8 @@
         <% end %>
       </div>
 
-      <div class="field" style="width:1500px; height:<%=h%> ; float:left; padding: 0; margin: 0;background-color:yellow;">
-          <%= f.text_area :body5, :cols=> 1000, :rows=>5, :style=>"display:none; height:50px; padding:0; margin:0;", :onchange=>"update_db();" %>
+      <div class="field" style="width:1500px; height:<%=h%> ; float:left; padding: 0; margin: 0">
+        <div style="width:600px;margin-left:400px;"> <%= render :partial=> "layouts/nav_new" %> </div>
       </div>
     </div>
     <div style="clear:both;"></div>
@@ -110,15 +108,16 @@
       <%= f.label :date %><br>
       <%= f.datetime_select :date %>
     </div>
-    <div>
+    <% line_height="13"%>
+    <div >
       <div class="field" style="float:left; width: col_width">
-        <%= f.text_area :body, :cols=> col_cnt, :rows=>row_cnt, :onkeyup=>"update_db();" %>
+        <%= f.text_area :body, :cols=> col_cnt, :rows=>row_cnt, :onkeyup=>"update_db();", :style=>" line-height:#{line_height}pt;" %>
       </div>
       <div class="field" style="float:left; width: col_width">
-        <%= f.text_area :body2, :cols=> col_cnt, :rows=>row_cnt, :onkeyup=>"update_db();" %>
+        <%= f.text_area :body2, :cols=> col_cnt, :rows=>row_cnt, :onkeyup=>"update_db();", :style=>" line-height:#{line_height}pt;"  %>
       </div>
       <div class="field" style="float:left; width: col_width">
-        <%= f.text_area :body3, :cols=> col_cnt, :rows=>row_cnt, :onkeyup=>"update_db();" %>
+        <%= f.text_area :body3, :cols=> col_cnt, :rows=>row_cnt, :onkeyup=>"update_db();", :style=>" line-height:#{line_height}pt;"  %>
       </div>
       <div class="field" style="float:left; width: col_width_plan">
         <%= f.text_area :body4, :cols=> col_cnt_plan, :rows=>row_cnt_plan, :onkeyup=>"update_db();", :style=>"display:none" %>

@@ -100,33 +100,6 @@ class MemosController < ApplicationController
     @memo = Memo.find(params[:id])
 
     prep_edit
-=begin
-    # 全ての予定を取得
-    @yotei = Memo.all
-    # 前日のMemo取得
-    @prev_day_memo = get_memo_by_date_fast_obj @memo.date-1
-    # 翌日のMemo取得
-    @next_day_memo = get_memo_by_date_fast_obj @memo.date+1
-
-    # コピー要求があり
-    if params[:copy]=="YES" 
-      # 前日のbodyをコピーする
-      @memo.body   = @memo.body.to_s
-      @memo.body  += filter_out_OK @prev_day_memo.body.to_s 
-      
-      @memo.body2  = @memo.body2.to_s
-      @memo.body2 += filter_out_OK @prev_day_memo.body2.to_s
-
-      @memo.body3  = @memo.body3.to_s
-      @memo.body3 += filter_out_OK @prev_day_memo.body3.to_s
-
-      @memo.body4  = @memo.body4.to_s
-      @memo.body4 += filter_out_OK @prev_day_memo.body4.to_s
-
-      @memo.body5  = @memo.body5.to_s
-      @memo.body5 += filter_out_OK @prev_day_memo.body5.to_s
-    end
-=end
     @memo.save
 
   end

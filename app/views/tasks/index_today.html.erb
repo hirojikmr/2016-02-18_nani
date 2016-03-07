@@ -1,5 +1,7 @@
 <script>
 
+
+
 function scroll_down()
 {
   $("html, body").animate({ scrollTop: $(document).height() }, 'fast');
@@ -20,6 +22,10 @@ $(window).load(function() {
 </script>
 
 <p id="notice"><%= notice %></p>
+
+<!-- メニュー-->
+<%= render :partial=>"layouts/nav_new"%>
+
 
 
 <% @days_tasks.each do |tasks| %>
@@ -98,6 +104,10 @@ $(window).load(function() {
               "^ふろ":"LightSeaGreen",
             }
 
+            TaskColor.all.each do | tc |
+              bg_col_h.store(tc.text, tc.color)
+            end
+
             bg_col="ivory"
             bg_col_h.each do |word, col|
               if t.body.match /#{word}/
@@ -107,11 +117,13 @@ $(window).load(function() {
             end
           %>
 
-          <div class="thin_bdr <%= cycle('odd_row', 'even_row')%>" style="padding-left:15px; width:550px; vertical-align:middle; 
-                        height: <%= (t.end-t.start)/50 %>px; line-height:<%= (t.end-t.start)/50 %>px ;background-color: <%=bg_col%>;">
+          <div class="thin_bdr <%= cycle('odd_row', 'even_row')%>" style="padding-left:15px; width:550px; display:table;
+                        height: <%= (t.end-t.start)/50 %>px; background-color: <%=bg_col%>;">
             <!-- タスク内容 -->
-            <%= t.body %>
+            <!--<div style="display:table-cell; vertical-align:middle; ">-->
+              <%= t.body %>
             (<%=(Time.at t.end-t.start).utc.strftime "%H:%M" %>)
+            <!--</div>-->
           </div>
 
         <% end %>
@@ -163,5 +175,8 @@ $(window).load(function() {
       <%= f.submit "記録"  %>
     </div>
   <% end %>
+
+<!-- メニュー-->
+<%= render :partial=>"layouts/nav_new"%>
 
 </div>

@@ -17,16 +17,12 @@
 <% end %>
 
 <!-- menu -->
-<% if @title != "memo"  %>
-	<%= render :partial=>"layouts/nav", :locals=>{pd:"YES", pu:"NO"} %>
-<% end %>
+<%#= render :partial=>"layouts/nav_new"%>
 
 <!-- content_START -->
 <%= yield %>
 <!-- content_END -->
 
-<!-- menu -->
-<%= render :partial=>"layouts/nav",:locals=>{pd:"NO", pu:"YES"} %>
 
 </body>
 </html>
