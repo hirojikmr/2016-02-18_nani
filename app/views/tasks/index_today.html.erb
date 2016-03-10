@@ -90,20 +90,21 @@ $(window).load(function() {
           <!-- タスクの色 -->
           <%
             #background-color用
-            bg_col_h = {
-              "^Nani":"lightblue",
-              "^NANI":"lightblue",
-              "^nani":"lightblue", 
-              "^休憩":"yellow", 
-              "^android":"orange", 
-              "^計画":"violet", 
-              "食":"tomato",
-              "^rails":"HotPink",
-              "^MVNO":"Aquamarine",
-              "^Java":"MediumPurple",
-              "^ふろ":"LightSeaGreen",
-            }
-
+            bg_col_h = {}
+#            bg_col_h = {
+#              "^Nani":"lightblue",
+#              "^NANI":"lightblue",
+#              "^nani":"lightblue", 
+#              "^休憩":"yellow", 
+#              "^android":"orange", 
+#              "^計画":"violet", 
+#              "食":"tomato",
+#              "^rails":"HotPink",
+#              "^MVNO":"Aquamarine",
+#              "^Java":"MediumPurple",
+#              "^ふろ":"LightSeaGreen",
+#            }
+#
             TaskColor.all.each do | tc |
               bg_col_h.store(tc.text, tc.color)
             end
