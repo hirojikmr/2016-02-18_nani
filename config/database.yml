@@ -13,10 +13,12 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: nani
-  password: 0855
-  socket: /run/mysqld/mysqld.sock
-  host: localhost
+  username: root
+  password: pass
+#  socket: /run/mysqld/mysqld.sock
+#  host: localhost
+  host: 127.0.0.1
+  port: 3306
 
 #development:
 #  <<: *default
