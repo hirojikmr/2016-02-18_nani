@@ -117,13 +117,18 @@ $(window).load(function() {
             end
           %>
 
-          <div class="thin_bdr <%= cycle('odd_row', 'even_row')%>" style="padding-left:15px; width:550px; display:table;
+          <!-- TASK ROW -->
+          <div class="thin_bdr %>" style="padding-left:5px; width:550px; position:relative;
                         height: <%= (t.end-t.start)/50 %>px; background-color: <%=bg_col%>;">
             <!-- タスク内容 -->
-            <!--<div style="display:table-cell; vertical-align:middle; ">-->
               <%= t.body %>
             (<%=(Time.at t.end-t.start).utc.strftime "%H:%M" %>)
-            <!--</div>-->
+            <!-- EDIT BUTONS -->
+            <div style="float:right; position: absolute; top:0px; left:555px; width:50px">
+              <%= link_to  edit_task_path(t) do %><i class="glyphicon glyphicon-pencil" style="color:#F2F2F2;"></i><% end %>
+              <%= link_to  t, method: :delete, data: { confirm: 'DELETE THIS TASK?' } do %><i class="glyphicon glyphicon-trash" style="color:#F2F2F2;"><% end %></i>
+            </div>
+
           </div>
 
         <% end %>

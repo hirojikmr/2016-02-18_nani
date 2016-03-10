@@ -3,9 +3,12 @@
 <%= render 'form' %>
 
 
+<h2>cat out | grep  尋司 | awk -e '{print $3, $5}'</h2>
+
 <%= form_tag(action:"create") do %>
   <%= text_area_tag "data","", :rows=>20, :cols=>50 %><br/>
   <%= submit_tag "SEND" %>
 <% end %>
 
 <%= link_to 'Back', capsels_path %>
+
