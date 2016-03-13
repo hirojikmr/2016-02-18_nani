@@ -17,7 +17,7 @@ default: &default
   password: pass
 #  socket: /run/mysqld/mysqld.sock
 #  host: localhost
-  host: ssd.home.momox.net
+  host: 192.168.1.188
   port: 3306
 
 #development:
